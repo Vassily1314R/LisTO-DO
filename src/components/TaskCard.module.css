@@ -6,6 +6,7 @@
   margin-bottom: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease-in-out;
+  max-width: 100%;
 }
 
 .taskCard:hover {
@@ -22,6 +23,8 @@
   margin: 0;
   font-size: 0.95rem;
   color: #d4d4d4;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .taskCard small {
