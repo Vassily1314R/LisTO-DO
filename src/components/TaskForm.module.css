@@ -16,6 +16,11 @@
   font-size: 0.9rem;
 }
 
+.taskForm input,
+.taskForm select {
+  flex: 1 1 200px;
+}
+
 .taskForm button {
   background-color: #2563eb;
   border: none;
