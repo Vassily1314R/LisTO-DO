@@ -20,20 +20,22 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <h2>Gestión de Tareas</h2>
-      <TaskForm onAddTask={handleAddTask} />
-
-      <div className="task-columns">
-        {TASK_STATUS.map((status) => (
-          <TaskColumn
-            key={status}
-            title={status}
-            tasks={tasks.filter((task) => task.status === status)}
-            onView={setViewTask}
-          />
-        ))}
-      </div>
-
+      <header>
+        <h2>Gestión de Tareas</h2>
+        <TaskForm onAddTask={handleAddTask} />
+      </header>
+      <main>
+        <div className="task-columns">
+          {TASK_STATUS.map((status) => (
+            <TaskColumn
+              key={status}
+              title={status}
+              tasks={tasks.filter((task) => task.status === status)}
+              onView={setViewTask}
+            />
+          ))}
+        </div>
+      </main>
       {viewTask && (
         <Modal onClose={closeModals}>
           <h2>{viewTask.title}</h2>
