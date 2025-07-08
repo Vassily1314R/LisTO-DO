@@ -30,7 +30,6 @@ const App = () => {
             title={status}
             tasks={tasks.filter((task) => task.status === status)}
             onView={setViewTask}
-            onEdite={}
           />
         ))}
       </div>
