@@ -32,3 +32,33 @@
   margin-top: 10px;
   color: #9ca3af;
 }
+
+.buttonGroup {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #1d4ed8;
+}
+
+.select {
+  background-color: #374151;
+  color: white;
+  border-radius: 6px;
+  border: 1px solid #4b5563;
+  padding: 6px 10px;
+  cursor: pointer;
+}
