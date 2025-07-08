@@ -1,6 +1,6 @@
 import styles from "./TaskCard.module.css";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
   return (
     <div className={styles.taskCard}>
       <h4>{task.title}</h4>
