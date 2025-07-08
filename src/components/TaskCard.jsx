@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./TaskCard.module.css";
 
 const TaskCard = ({ task }) => {
