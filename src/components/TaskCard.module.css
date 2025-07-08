@@ -1,0 +1,31 @@
+.taskCard {
+  border-radius: 12px;
+  background: #1e1e1e;
+  color: #ffffff;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.taskCard:hover {
+  transform: translateY(-2px);
+}
+
+.taskCard h4 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: #facc15;
+}
+
+.taskCard p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #d4d4d4;
+}
+
+.taskCard small {
+  display: block;
+  margin-top: 10px;
+  color: #9ca3af;
+}
