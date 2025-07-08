@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskColumn from "./components/TaskColumn";
 import { TASK_STATUS } from "./data/taskStatus";
+import "./App.css"; // asegúrate de importar el CSS
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -12,11 +13,11 @@ const App = () => {
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
+    <div className="app-container">
       <h2>Gestión de Tareas</h2>
       <TaskForm onAddTask={handleAddTask} />
 
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className="task-columns">
         {TASK_STATUS.map((status) => (
           <TaskColumn
             key={status}
