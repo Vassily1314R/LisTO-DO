@@ -12,6 +12,7 @@
   overflow-x: auto;
   width: 100%;
   box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 .task-columns > * {
@@ -23,6 +24,6 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  max-width: 100%; 
+  max-width: 100%;
   box-sizing: border-box;
 }
