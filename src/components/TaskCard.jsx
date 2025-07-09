@@ -30,7 +30,7 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
   return (
     <div className={styles.taskCard}>
       {modoEdicion ? (
-        <>
+        <div className={styles.inputs}>
           <input
             type="text"
             value={tituloEditado}
@@ -40,6 +40,7 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
           <textarea
             value={descripcionEditada}
             onChange={(e) => setDescripcionEditada(e.target.value)}
+            rows={10}
           />
           <div className={styles.buttonGroup}>
             <button className={styles.button} onClick={guardarCambios}>
@@ -49,7 +50,7 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
               Cancelar
             </button>
           </div>
-        </>
+        </div>
       ) : (
         <>
           <h4>{task.title}</h4>

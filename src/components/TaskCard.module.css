@@ -2,6 +2,12 @@
   text-align: justify;
 }
 
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .taskCard {
   border-radius: 12px;
   background: #1e1e1e;
