@@ -53,7 +53,7 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
       ) : (
         <>
           <h4>{task.title}</h4>
-          <p>{task.description}</p>
+          <p className={styles.descript}>{task.description}</p>
           <small>Entrega: {task.dueDate}</small>
 
           <div className={styles.buttonGroup}>
