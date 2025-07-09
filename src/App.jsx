@@ -8,14 +8,30 @@ import "./App.css";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+
   const [viewTask, setViewTask] = useState(null);
 
   const handleAddTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
+    console.log(tasks);
   };
 
   const closeModals = () => {
     setViewTask(null);
+  };
+
+  const handleEditTask = (tareaEditada) => {
+    const tareasActualizadas = tasks.map((t) =>
+      t.id === tareaEditada.id ? tareaEditada : t
+    );
+    setTasks(tareasActualizadas);
+  };
+
+  const handleChangeTaskStatus = (taskId, nuevoEstado) => {
+    const tareasActualizadas = tasks.map((t) =>
+      t.id === taskId ? { ...t, status: nuevoEstado } : t
+    );
+    setTasks(tareasActualizadas);
   };
 
   return (
@@ -32,6 +48,8 @@ const App = () => {
               title={status}
               tasks={tasks.filter((task) => task.status === status)}
               onView={setViewTask}
+              onEdit={handleEditTask}
+              onChangeStatus={handleChangeTaskStatus}
             />
           ))}
         </div>
