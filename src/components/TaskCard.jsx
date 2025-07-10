@@ -67,6 +67,12 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
             >
               Editar
             </button>
+            <button
+              className={styles.button}
+              // onClick={}
+            >
+              Eliminar
+            </button>
             <select
               className={styles.select}
               value={task.status}
