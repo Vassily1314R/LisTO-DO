@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styles from "./TaskCard.module.css";
 
-const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
+const TaskCard = ({ task, onView, onEdit, onChangeStatus, onDelete }) => {
   const [modoEdicion, setModoEdicion] = useState(false);
   const [tituloEditado, setTituloEditado] = useState(task.title);
+  // const [deletTask, setdeletTask] = useState()
   const [descripcionEditada, setDescripcionEditada] = useState(
     task.description
   );
@@ -21,11 +22,15 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
   };
 
   const cancelar = () => {
-    // Restaurar valores originales
     setTituloEditado(task.title);
     setDescripcionEditada(task.description);
     setModoEdicion(false);
+    // Restaurar valores originales
   };
+
+  // const handleDelete = ()=>{
+
+  // }
 
   return (
     <div className={styles.taskCard}>
@@ -67,10 +72,7 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus }) => {
             >
               Editar
             </button>
-            <button
-              className={styles.button}
-              // onClick={}
-            >
+            <button className={styles.button} onClick={() => onDelete(task.id)}>
               Eliminar
             </button>
             <select

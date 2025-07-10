@@ -13,7 +13,7 @@ const App = () => {
 
   const handleAddTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
-    console.log(tasks);
+    // console.log(tasks);
   };
 
   const closeModals = () => {
@@ -34,6 +34,11 @@ const App = () => {
     setTasks(tareasActualizadas);
   };
 
+  const handleDeleteTask = (taskId) => {
+    const tareasActualizadas = tasks.filter((t) => t.id !== taskId);
+    setTasks(tareasActualizadas);
+  };
+
   return (
     <div className="app-container">
       <header>
@@ -50,6 +55,7 @@ const App = () => {
               onView={setViewTask}
               onEdit={handleEditTask}
               onChangeStatus={handleChangeTaskStatus}
+              onDelete={handleDeleteTask}
             />
           ))}
         </div>
