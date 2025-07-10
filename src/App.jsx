@@ -13,7 +13,6 @@ const App = () => {
 
   const handleAddTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
-    // console.log(tasks);
   };
 
   const closeModals = () => {
