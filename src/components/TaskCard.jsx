@@ -4,18 +4,18 @@ import styles from "./TaskCard.module.css";
 const TaskCard = ({ task, onView, onEdit, onChangeStatus, onDelete }) => {
   const [modoEdicion, setModoEdicion] = useState(false);
   const [tituloEditado, setTituloEditado] = useState(task.title);
-  // const [deletTask, setdeletTask] = useState()
   const [descripcionEditada, setDescripcionEditada] = useState(
     task.description
   );
+  // Desestructuramos los array que usaremos mas adelante
 
   const guardarCambios = () => {
     if (descripcionEditada === "" || tituloEditado === "") return;
-
     const tareaEditada = {
       ...task,
       title: tituloEditado,
       description: descripcionEditada,
+      // Guardamos los cambios que luego se envian al padre
     };
     onEdit(tareaEditada); // enviamos la tarea al padre
     setModoEdicion(false);
@@ -27,10 +27,6 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus, onDelete }) => {
     setModoEdicion(false);
     // Restaurar valores originales
   };
-
-  // const handleDelete = ()=>{
-
-  // }
 
   return (
     <div className={styles.taskCard}>
