@@ -5,19 +5,21 @@ import TaskColumn from "./components/TaskColumn";
 import { TASK_STATUS } from "./data/taskStatus";
 import Modal from "./components/Modal";
 import "./App.css";
+import { useTareas } from "./domain/useTareas";
 
 const App = () => {
   const { data, loading, error, getTareas } = useTareas();
   const [tasks, setTasks] = useState([]);
   const [viewTask, setViewTask] = useState(null);
 
-  const handleAddTask = (newTask) => {
-    setTasks((prev) => [...prev, newTask]);
-  };
-
   const closeModals = () => {
     setViewTask(null);
   };
+
+  const handleAddTask = (newTask) => {
+    // setTasks((prev) => [...prev, newTask]);
+  };
+  console.log(data);
 
   const handleEditTask = (tareaEditada) => {
     const tareasActualizadas = tasks.map((t) =>
@@ -50,7 +52,7 @@ const App = () => {
             <TaskColumn
               key={status}
               title={status}
-              tasks={tasks.filter((task) => task.status === status)}
+              tasks={data?.filter((task) => task.taskStatus.name === status)}
               onView={setViewTask}
               onEdit={handleEditTask}
               onChangeStatus={handleChangeTaskStatus}

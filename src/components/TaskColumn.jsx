@@ -10,11 +10,11 @@ const TaskColumn = ({
   onDelete,
 }) => {
   const columnClass = `${styles.taskColumn} ${styles[title.toLowerCase()]}`;
-
+  console.log(tasks);
   return (
     <div className={columnClass}>
       <h3>{title}</h3>
-      {tasks.map((task) => (
+      {tasks?.map((task) => (
         <TaskCard
           key={task.id}
           task={task}

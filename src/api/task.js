@@ -9,7 +9,6 @@ export const getTasks = async () => {
         // 'Authorization': 'Bearer TU_TOKEN'
       },
     });
-
     // Verificamos si la respuesta fue exitosa
     if (!response.ok) {
       throw new Error("No se pudo obtener la información");
