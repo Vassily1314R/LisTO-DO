@@ -7,6 +7,7 @@ import Modal from "./components/Modal";
 import "./App.css";
 
 const App = () => {
+  const { data, loading, error, getTareas } = useTareas();
   const [tasks, setTasks] = useState([]);
   const [viewTask, setViewTask] = useState(null);
 
