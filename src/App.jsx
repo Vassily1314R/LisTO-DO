@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskColumn from "./components/TaskColumn";
 import { TASK_STATUS } from "./data/taskStatus";
@@ -8,7 +8,6 @@ import "./App.css";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
-
   const [viewTask, setViewTask] = useState(null);
 
   const handleAddTask = (newTask) => {
