@@ -10,18 +10,19 @@ const TaskForm = ({ onAddTask }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddTask({
-      id: Date.now(),
-      title,
-      description: desc,
-      dueDate,
-      status,
-    });
-
-    setTitle("");
+  setTitle("");
     setDesc("");
     setDueDate("");
-    setStatus("Programada");
+    setStatus(e.target.value);
+    onAddTask(
+
+      title,
+      desc,
+      dueDate,
+      status,
+    );
+
+   
   };
 
   return (

@@ -17,14 +17,18 @@ const App = () => {
     setViewTask(null);
   };
 //  Crear tareas
-  const handleAddTask = async (title, desc, dueDate, status) => {
+  const handleAddTask = async (title, desc, dueDate, status) =>   {
+
+    // convertir status a int
+    
     const nuevaTarea = {
     title,
     description: desc,
     userId: 1,         
-    taskStatusId: status,    
+    taskStatusId: parseInt(status, 10), // Convertir a entero   
     createAt:dueDate           
   };
+  console.log(nuevaTarea)
   try {
     const response = await createTask(nuevaTarea);
     console.log("Tarea creada:", response.data);
