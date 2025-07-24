@@ -25,7 +25,7 @@ const App = () => {
       description: desc,
       userId: 1,
       taskStatusId: parseInt(status, 10), // Convertir a entero
-      createAt: dueDate,
+      createAt: new Date(dueDate),
     };
     console.log(nuevaTarea);
     try {

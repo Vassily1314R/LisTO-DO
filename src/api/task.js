@@ -24,16 +24,13 @@ export const getTasks = async () => {
 
 export const createTask = async (task) => {
   try {
-    const response = await fetch(
-      "http://localhost:3000/api/tasks",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(task),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
 
     if (!response.ok) {
       throw new Error("Error al crear la tarea");
@@ -45,3 +42,26 @@ export const createTask = async (task) => {
   }
 };
 
+export const updateTask = async (id, task) => {
+  try {
+    const response = await fetch(
+      `https://g075backendapi.onrender.com/api/tasks/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Error al actualizar la tarea");
+    }
+
+    const result = await response.json();
+    return { data: result };
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
