@@ -44,16 +44,13 @@ export const createTask = async (task) => {
 
 export const updateTask = async (id, task) => {
   try {
-    const response = await fetch(
-      `https://g075backendapi.onrender.com/api/tasks/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(task),
-      }
-    );
+    const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
 
     if (!response.ok) {
       throw new Error("Error al actualizar la tarea");

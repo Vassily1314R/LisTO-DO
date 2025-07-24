@@ -6,7 +6,7 @@ import { TASK_STATUS } from "./data/taskStatus";
 import Modal from "./components/Modal";
 import "./App.css";
 import { useTareas } from "./domain/useTareas";
-import { createTask } from "./api/task.js";
+import { createTask, updateTask } from "./api/task.js";
 
 const App = () => {
   const { data, loading, error, getTareas } = useTareas();
@@ -40,11 +40,28 @@ const App = () => {
     }
   };
 
-  const handleEditTask = (tareaEditada) => {
-    const tareasActualizadas = tasks.map((t) =>
-      t.id === tareaEditada.id ? tareaEditada : t
-    );
-    setTasks(tareasActualizadas);
+  const handleEditTask = async (tarea) => {
+    const datosEditados = {
+      title: tarea.title,
+      description: tarea.description,
+      userId: 1,
+      // También podrías incluir taskStatusId o completed si lo manejas
+    };
+
+    try {
+      const { data: tareaActualizada } = await updateTask(
+        tarea.id,
+        datosEditados
+      );
+
+      // Actualizar el estado local con la tarea nueva
+      const tareasActualizadas = tasks.map((t) =>
+        t.id === tareaActualizada.id ? tareaActualizada : t
+      );
+      setTasks(tareasActualizadas);
+    } catch (error) {
+      console.error("Error al actualizar la tarea:", error);
+    }
   };
 
   const handleChangeTaskStatus = (taskId, nuevoEstado) => {
