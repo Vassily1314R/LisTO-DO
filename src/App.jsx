@@ -6,6 +6,7 @@ import { TASK_STATUS } from "./data/taskStatus";
 import Modal from "./components/Modal";
 import "./App.css";
 import { useTareas } from "./domain/useTareas";
+import { createTask } from "./api/task.js";
 
 const App = () => {
   const { data, loading, error, getTareas } = useTareas();
@@ -15,12 +16,27 @@ const App = () => {
   const closeModals = () => {
     setViewTask(null);
   };
-
-  const handleAddTask = (newTask) => {
-    // setTasks((prev) => [...prev, newTask]);
+//  Crear tareas
+  const handleAddTask = async (title, desc, dueDate, status) => {
+    const nuevaTarea = {
+    title,
+    description: desc,
+    userId: 1,         
+    taskStatusId: status,    
+    createAt:dueDate           
   };
-  
+  try {
+    const response = await createTask(nuevaTarea);
+    console.log("Tarea creada:", response.data);
 
+    if (response.data) {
+      getTareas(); // Actualiza la lista visualmente
+    }
+  } catch (error) {
+    console.error("Error al crear la tarea:", error);
+  }
+};
+    
   const handleEditTask = (tareaEditada) => {
     const tareasActualizadas = tasks.map((t) =>
       t.id === tareaEditada.id ? tareaEditada : t
@@ -50,9 +66,9 @@ const App = () => {
         <div className="task-columns">
           {TASK_STATUS.map((status) => (
             <TaskColumn
-              key={status}
-              title={status}
-              tasks={data?.filter((task) => task.taskStatus.name === status)}
+              key={status.nombre}
+              title={status.nombre}
+              tasks={data?.filter((task) => task.taskStatus.name === status.nombre)}
               onView={setViewTask}
               onEdit={handleEditTask}
               onChangeStatus={handleChangeTaskStatus}

@@ -48,8 +48,8 @@ const TaskForm = ({ onAddTask }) => {
       />
       <select value={status} onChange={(e) => setStatus(e.target.value)}>
         {TASK_STATUS.map((s) => (
-          <option key={s} value={s}>
-            {s}
+          <option key={s.id} value={s.id}>
+            {s.nombre}
           </option>
         ))}
       </select>

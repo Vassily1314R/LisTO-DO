@@ -56,7 +56,7 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus, onDelete }) => {
         <>
           <h4>{task.title}</h4>
           <p className={styles.descript}>{task.description}</p>
-          <small>Entrega: {task.dueDate}</small>
+          <small>Entrega: {task.createAt}</small>
 
           <div className={styles.buttonGroup}>
             <button className={styles.button} onClick={() => onView(task)}>
