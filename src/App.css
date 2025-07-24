@@ -3,6 +3,7 @@
 .app-container {
   padding: 20px;
   font-family: sans-serif;
+  background-color: rgb(36, 36, 36);
 }
 
 .task-columns {
