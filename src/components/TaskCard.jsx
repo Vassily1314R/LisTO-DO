@@ -15,7 +15,6 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus, onDelete }) => {
       ...task,
       title: tituloEditado,
       description: descripcionEditada,
-      // Guardamos los cambios que luego se envian al padre
     };
     onEdit(tareaEditada); // enviamos la tarea al padre
     setModoEdicion(false);
@@ -73,12 +72,14 @@ const TaskCard = ({ task, onView, onEdit, onChangeStatus, onDelete }) => {
             </button>
             <select
               className={styles.select}
-              value={task.status}
-              onChange={(e) => onChangeStatus(task.id, e.target.value)}
+              value={task.taskStatus.id}
+              onChange={(e) =>
+                onChangeStatus(task.id, parseInt(e.target.value, 10))
+              }
             >
-              <option value="Programada">Programada</option>
-              <option value="Ejecutada">Ejecutada</option>
-              <option value="Reprogramada">Reprogramada</option>
+              <option value="1">Programada</option>
+              <option value="2">Ejecutada</option>
+              <option value="3">Reprogramada</option>
             </select>
           </div>
         </>

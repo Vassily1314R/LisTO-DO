@@ -6,11 +6,10 @@ import { TASK_STATUS } from "./data/taskStatus";
 import Modal from "./components/Modal";
 import "./App.css";
 import { useTareas } from "./domain/useTareas";
-import { createTask, updateTask } from "./api/task.js";
+import { createTask, deleteTask, updateTask } from "./api/task.js";
 
 const App = () => {
   const { data, loading, error, getTareas } = useTareas();
-  const [tasks, setTasks] = useState([]);
   const [viewTask, setViewTask] = useState(null);
   console.log(data);
   const closeModals = () => {
@@ -18,8 +17,6 @@ const App = () => {
   };
   //  Crear tareas
   const handleAddTask = async (title, desc, dueDate, status) => {
-    // convertir status a int
-
     const nuevaTarea = {
       title,
       description: desc,
@@ -49,31 +46,36 @@ const App = () => {
     };
 
     try {
-      const { data: tareaActualizada } = await updateTask(
-        tarea.id,
-        datosEditados
-      );
-
-      // Actualizar el estado local con la tarea nueva
-      const tareasActualizadas = tasks.map((t) =>
-        t.id === tareaActualizada.id ? tareaActualizada : t
-      );
-      setTasks(tareasActualizadas);
+      await updateTask(tarea.id, datosEditados);
+      getTareas(); // Actualiza la lista visualmente
     } catch (error) {
       console.error("Error al actualizar la tarea:", error);
     }
   };
 
-  const handleChangeTaskStatus = (taskId, nuevoEstado) => {
-    const tareasActualizadas = tasks.map((t) =>
-      t.id === taskId ? { ...t, status: nuevoEstado } : t
-    );
-    setTasks(tareasActualizadas);
+  const handleChangeTaskStatus = async (taskId, nuevoStatusId) => {
+    const tarea = data.find((t) => t.id === taskId);
+
+    const tareaActualizada = {
+      ...tarea,
+      taskStatusId: nuevoStatusId,
+    };
+    try {
+      await updateTask(taskId, tareaActualizada);
+      getTareas(); // Actualiza la lista visualmente
+      console.log("Tarea actualizada:", tareaActualizada);
+    } catch (error) {
+      console.error("Error al actualizar el estado de la tarea:", error);
+    }
   };
 
-  const handleDeleteTask = (taskId) => {
-    const tareasActualizadas = tasks.filter((t) => t.id !== taskId);
-    setTasks(tareasActualizadas);
+  const handleDeleteTask = async (taskId) => {
+    try {
+      await deleteTask(taskId);
+      getTareas();
+    } catch {
+      console.error("Error al actualizar el estado de la tarea:", error);
+    }
   };
 
   return (
@@ -103,8 +105,8 @@ const App = () => {
         <Modal onClose={closeModals}>
           <h2>{viewTask.title}</h2>
           <p>{viewTask.description}</p>
-          <p>Entrega: {viewTask.dueDate}</p>
-          <p>Estado: {viewTask.status}</p>
+          <p>Entrega: {viewTask.createAt}</p>
+          <p>Estado: {viewTask.taskStatus.name}</p>
         </Modal>
       )}
     </div>

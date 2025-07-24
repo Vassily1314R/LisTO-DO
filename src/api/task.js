@@ -62,3 +62,22 @@ export const updateTask = async (id, task) => {
     return Promise.reject(error);
   }
 };
+
+export const deleteTask = async (id) => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al eliminar la tarea");
+    }
+
+    return { data: { message: "Tarea eliminada exitosamente" } };
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
