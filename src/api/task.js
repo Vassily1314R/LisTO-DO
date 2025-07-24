@@ -1,14 +1,17 @@
 export const getTasks = async () => {
   try {
     // Hacemos la petición GET a la URL del backend
-    const response = await fetch("http://localhost:3000/api/tasks", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        // Aquí podrías agregar más cabeceras si lo necesitas, como autorización
-        // 'Authorization': 'Bearer TU_TOKEN'
-      },
-    });
+    const response = await fetch(
+      "https://backendapilisto-do.onrender.com/api/tasks",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Aquí podrías agregar más cabeceras si lo necesitas, como autorización
+          // 'Authorization': 'Bearer TU_TOKEN'
+        },
+      }
+    );
     // Verificamos si la respuesta fue exitosa
     if (!response.ok) {
       throw new Error("No se pudo obtener la información");
@@ -24,13 +27,16 @@ export const getTasks = async () => {
 
 export const createTask = async (task) => {
   try {
-    const response = await fetch("http://localhost:3000/api/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(task),
-    });
+    const response = await fetch(
+      "https://backendapilisto-do.onrender.com/api/tasks",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Error al crear la tarea");
@@ -44,13 +50,16 @@ export const createTask = async (task) => {
 
 export const updateTask = async (id, task) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(task),
-    });
+    const response = await fetch(
+      `https://backendapilisto-do.onrender.com/api/tasks/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Error al actualizar la tarea");
@@ -65,12 +74,15 @@ export const updateTask = async (id, task) => {
 
 export const deleteTask = async (id) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://backendapilisto-do.onrender.com/api/tasks/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Error al eliminar la tarea");
