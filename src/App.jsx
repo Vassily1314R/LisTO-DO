@@ -11,7 +11,7 @@ const App = () => {
   const { data, loading, error, getTareas } = useTareas();
   const [tasks, setTasks] = useState([]);
   const [viewTask, setViewTask] = useState(null);
-
+  console.log(data);
   const closeModals = () => {
     setViewTask(null);
   };
@@ -19,7 +19,7 @@ const App = () => {
   const handleAddTask = (newTask) => {
     // setTasks((prev) => [...prev, newTask]);
   };
-  console.log(data);
+  
 
   const handleEditTask = (tareaEditada) => {
     const tareasActualizadas = tasks.map((t) =>
