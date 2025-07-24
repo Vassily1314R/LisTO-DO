@@ -6,23 +6,15 @@ const TaskForm = ({ onAddTask }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const [status, setStatus] = useState("Programada");
+  const [status, setStatus] = useState("1");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  setTitle("");
+    onAddTask(title, desc, dueDate, status);
+    setTitle("");
     setDesc("");
     setDueDate("");
-    setStatus(e.target.value);
-    onAddTask(
-
-      title,
-      desc,
-      dueDate,
-      status,
-    );
-
-   
+    setStatus("1");
   };
 
   return (

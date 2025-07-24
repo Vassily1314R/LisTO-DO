@@ -16,31 +16,30 @@ const App = () => {
   const closeModals = () => {
     setViewTask(null);
   };
-//  Crear tareas
-  const handleAddTask = async (title, desc, dueDate, status) =>   {
-
+  //  Crear tareas
+  const handleAddTask = async (title, desc, dueDate, status) => {
     // convertir status a int
-    
-    const nuevaTarea = {
-    title,
-    description: desc,
-    userId: 1,         
-    taskStatusId: parseInt(status, 10), // Convertir a entero   
-    createAt:dueDate           
-  };
-  console.log(nuevaTarea)
-  try {
-    const response = await createTask(nuevaTarea);
-    console.log("Tarea creada:", response.data);
 
-    if (response.data) {
-      getTareas(); // Actualiza la lista visualmente
+    const nuevaTarea = {
+      title,
+      description: desc,
+      userId: 1,
+      taskStatusId: parseInt(status, 10), // Convertir a entero
+      createAt: dueDate,
+    };
+    console.log(nuevaTarea);
+    try {
+      const response = await createTask(nuevaTarea);
+      console.log("Tarea creada:", response.data);
+
+      if (response.data) {
+        getTareas(); // Actualiza la lista visualmente
+      }
+    } catch (error) {
+      console.error("Error al crear la tarea:", error);
     }
-  } catch (error) {
-    console.error("Error al crear la tarea:", error);
-  }
-};
-    
+  };
+
   const handleEditTask = (tareaEditada) => {
     const tareasActualizadas = tasks.map((t) =>
       t.id === tareaEditada.id ? tareaEditada : t
@@ -72,7 +71,9 @@ const App = () => {
             <TaskColumn
               key={status.nombre}
               title={status.nombre}
-              tasks={data?.filter((task) => task.taskStatus.name === status.nombre)}
+              tasks={data?.filter(
+                (task) => task.taskStatus.name === status.nombre
+              )}
               onView={setViewTask}
               onEdit={handleEditTask}
               onChangeStatus={handleChangeTaskStatus}
